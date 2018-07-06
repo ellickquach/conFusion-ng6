@@ -22,6 +22,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms'; 
+import { LeaderService } from './services/leader.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -46,13 +51,17 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatFormFieldModule, 
     MatInputModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     FormsModule,
     MatCheckboxModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ],
   entryComponents: [ LoginComponent ],
-  providers: [DishService, PromotionService],
+  providers: [DishService, LeaderService, PromotionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
