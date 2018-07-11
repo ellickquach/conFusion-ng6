@@ -68,7 +68,10 @@ export class DishdetailComponent implements OnInit {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishservice
         .getDish(+params['id'])))
-        .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+        .subscribe(dish => { 
+            this.dish = dish; 
+            this.setPrevNext(dish.id); 
+        });
     }
 
    goBack(): void {
@@ -76,9 +79,10 @@ export class DishdetailComponent implements OnInit {
   }
 
   setPrevNext(dishId: number) {
-      const index = this.dishIds.indexOf(dishId);
-      this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
-      this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
+      let index = this.dishIds.indexOf(dishId);
+      let idslen = this.dishIds.length;
+      this.prev = this.dishIds[(idslen + index - 1) % idslen];
+      this.next = this.dishIds[(idslen + index + 1) % idslen];
   }
 
 
