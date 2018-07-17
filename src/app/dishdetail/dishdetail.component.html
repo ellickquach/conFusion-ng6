@@ -14,7 +14,7 @@
             <h3>{{dish.name | uppercase}}</h3>
           </mat-card-title>
         </mat-card-header>
-        <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+        <img mat-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
         <mat-card-content>
           <p>{{dish.description}}
           </p>
@@ -49,7 +49,7 @@
                         <p matLine>-- {{note.author}} {{note.date | date}}</p>
                     </mat-list-item>
                 </mat-list>
-                <div [hidden]="cForm.form.invalid">
+                <div [hidden]="commentForm.invalid">
                   <mat-list>
                     <mat-list-item>
                         <p matLine>{{commentForm.value.comment}}</p>
@@ -58,7 +58,7 @@
                     </mat-list-item>
                   </mat-list>
                 </div>
-                 <form novalidate [formGroup]="commentForm" #cForm="ngForm" (ngSubmit)="onSubmit()">
+                 <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
                     <p><mat-form-field class="full-width">
                       <input matInput formControlName="author" placeholder="Name" type="text" required>
                       <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
@@ -70,7 +70,7 @@
                       <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
                     </mat-form-field></p>
                     <button type="submit" mat-button class="background-primary text-floral-white"
-                      [disabled]="cForm.form.invalid">Submit</button>
+                      [disabled]="commentForm.invalid">Submit</button>
                   </form>
                
       </div>
