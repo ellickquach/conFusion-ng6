@@ -63,6 +63,8 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
 
+  dishcopy = null;
+
   commentForm: FormGroup;
 
   formErrors = {
@@ -102,6 +104,7 @@ export class DishdetailComponent implements OnInit {
         .getDish(+params['id'])))
         .subscribe(dish => { 
             this.dish = dish; 
+            this.dishcopy = dish;
             this.setPrevNext(dish.id); 
         },
           errmess => this.errMess = <any>errmess.message);
@@ -143,7 +146,9 @@ export class DishdetailComponent implements OnInit {
        'date': (new Date()).toISOString()
     }
             
-    this.dish.comments.push(this.comment);
+    this.dishcopy.comments.push(this.comment);
+    this.dishcopy.save()
+      .subscribe(dish => this.dish = dish);
     
     this.commentForm.reset({
       author: '',
