@@ -10,20 +10,23 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
 
+import { Restangular } from 'ngx-restangular';
+
 @Injectable()
 export class LeaderService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private restangular: Restangular) { }
 
   getLeaders(): Observable<Leader[]> {
-    return this.http.get<Leader[]>(baseURL + 'leaders');
+    return this.restangular.all('leaders').getList();
   }
 
   getLeader(id: number): Observable<Leader> {
-    return this.http.get<Leader>(baseURL + 'leaders/' + id);
+    return this.restangular.one('leaders', id).get();
   }
 
   getFeaturedLeader(): Observable<Leader> {
-    return this.http.get<Leader>(baseURL + 'leaders?featured=true').pipe(map(leaders => leaders[0]));
+    return this.restangular.all('leaders').getList({ featured: true })
+      .pipe(map(leaders => leaders[0])); 
   }
 }
