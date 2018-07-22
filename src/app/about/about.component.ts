@@ -17,7 +17,7 @@ import { flyInOut, expand } from '../animations/app.animations';
     'style': 'display: block;'
     },
   animations: [
-      flyInOut(,
+      flyInOut(),
       expand()
   ]
 })

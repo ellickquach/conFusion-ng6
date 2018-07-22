@@ -36,6 +36,8 @@ import { RestangularModule, Restangular } from 'ngx-restangular';
 import { RestangularConfigFactory } from './shared/restConfig';
 import { HighlightDirective } from './directives/highlight.directive';
 
+import { FeedbackService } from './services/feedback.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +80,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     LeaderService, 
     PromotionService,
     ProcessHTTPMsgService,
+    FeedbackService,
     {provide: 'BaseURL', useValue: baseURL }
   ],
   bootstrap: [AppComponent]
